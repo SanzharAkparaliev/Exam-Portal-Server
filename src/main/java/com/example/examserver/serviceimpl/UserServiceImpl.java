@@ -8,6 +8,7 @@ import com.example.examserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -36,5 +37,21 @@ public class UserServiceImpl implements UserService {
 
         }
         return local;
+    }
+
+    @Override
+    public User getUserByUserName(String userName) {
+        return userRepository.findByUsername(userName);
+    }
+
+
+    @Override
+    public void deleteUser(Long userId) {
+        userRepository.deleteById(userId);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }
