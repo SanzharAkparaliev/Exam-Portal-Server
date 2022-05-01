@@ -1,4 +1,4 @@
-package com.example.examserver;
+package com.example.examserver.controller;
 
 import com.example.examserver.model.Role;
 import com.example.examserver.model.User;
@@ -6,6 +6,8 @@ import com.example.examserver.model.UserRole;
 import com.example.examserver.service.UserService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -20,7 +22,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
+    @PostMapping("/")
     public User createUser(@RequestBody User newuser) throws Exception {
        User user = new User();
         user.setUsername(newuser.getUsername());
@@ -59,5 +61,10 @@ public class UserController {
     @GetMapping
     public List<User> getAllUsers(){
       return   userService.getAllUsers();
+    }
+    @ExceptionHandler(UserFoundException.class)
+    public ResponseEntity<?> exceptionHandler(UserFoundException ex)
+    {
+        return new ResponseEntity<>(ex, HttpStatus.BAD_REQUEST);
     }
 }

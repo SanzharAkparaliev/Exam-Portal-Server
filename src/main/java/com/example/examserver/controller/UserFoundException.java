@@ -1,2 +1,4 @@
-package com.example.examserver.controller;public class UserFoundException extends Throwable {
+package com.example.examserver.controller;
+
+public class UserFoundException extends Throwable {
 }
