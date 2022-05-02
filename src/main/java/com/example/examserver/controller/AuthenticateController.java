@@ -13,14 +13,12 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
 @RestController
+@CrossOrigin("*")
 public class AuthenticateController {
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -57,7 +55,7 @@ public class AuthenticateController {
 
     @GetMapping("/current-user")
     public User getCurrentUser(Principal principal){
+        System.out.println("User Name :" + principal.getName());
         return ((User) this.userDetailsServiceimpl.loadUserByUsername(principal.getName()));
-
     }
 }
