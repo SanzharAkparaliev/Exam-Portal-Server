@@ -1,8 +1,15 @@
 package com.example.examserver.model.exam;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +26,6 @@ public class Question {
     private String answer;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "quiz_q_id")
     private Quiz quiz;
 
     public Quiz getQuiz() {

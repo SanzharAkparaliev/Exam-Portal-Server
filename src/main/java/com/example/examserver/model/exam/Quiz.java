@@ -11,10 +11,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +26,6 @@ public class Quiz {
     private String numberOfQuestions;
     private boolean active = false;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_c_id")
     private Category category;
 
     @OneToMany(mappedBy = "quiz",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
