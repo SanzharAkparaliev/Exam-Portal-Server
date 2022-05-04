@@ -35,8 +35,6 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public void deleteQuiz(Long quizId) {
-        Quiz quiz = new Quiz();
-        quiz.setQId(quizId);
-        quizRepository.delete(quiz);
+        quizRepository.deleteById(quizId);
     }
 }
